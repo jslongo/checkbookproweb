@@ -64,7 +64,13 @@ Checkbookproweb::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-  
+  match 'account/monthly/:id/:begin_date/:end_date', 
+			  :controller => 'accounts', 
+			  :action => 'show',
+              :id => /\d+/,
+              :begin_date => /[^\/]+/,
+              :end_date => /[^\/]+/
+			  
   match 'account/transactions/since/:date/:id',
              :controller => 'accounts',
              :action     => 'since',

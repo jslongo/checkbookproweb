@@ -11,13 +11,23 @@ class AccountsController < ApplicationController
   end
 
   # GET /accounts/1
-  # GET /accounts/1.json
+  # GET /accounts/1.xml
   def show
+    begin_date = params[:begin_date]
+    end_date = params[:end_date]
+    if (!begin_date)
+      begin_date = DateTime.now.beginning_of_month
+    end
+    if (!end_date)
+      end_date = begin_date.end_of_month
+    end
     @account = Account.find(params[:id])
+    @transactions = Transaction.find(:all, :conditions => ["account_id = ? AND transaction_date >= ? AND transaction_date <= ?", params[:id], begin_date, end_date],  :order => "transaction_date, itemno")
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @account }
+      format.xml  { render :xml => @account }
+      format.json { render :json => @account }
     end
   end
 

@@ -1,25 +1,63 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Account name:</b>
-  <%= @account.account_name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @account.description %>
-</p>
-
-<p>
-  <b>Starting balance:</b>
-  <%= @account.starting_balance %>
-</p>
-
-<p>
-  <b>Account type:</b>
-  <%= @account.account_type %>
-</p>
-
-
-<%= link_to 'Edit', edit_account_path(@account) %> |
+<br />
+<% balance = 0%>
+<% @transactions.each do |transaction| %>
+<% balance+=transaction.amount.to_f%>
+<% end %>
+<fieldset>
+ <legend class="account"><%=@account.account_name %></legend>
+<table align="center" width="90%" cellspacing="0" style="border-style:solid; border-width: 3px; border-color: #3B5998;">
+    <tr bgcolor="#3B5998">
+		<td colspan=3><br /></td>
+		<td colspan=4><h2 style="color:#FFFFFF; font-family: cool_font">Balance: <%=h number_to_currency(balance, :unit => "$")%></h2></td>
+    </tr>
+	<tr>
+		<th style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font" width="12.5%">Item No.</th>
+		<th style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font" width="12.5%">Date</th>
+		<th style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font" width="55%">Description</th>
+		<th style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font" width="10px">F</th>
+		<th style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font" width="10px">C</th>
+		<th style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font" >Amount</th>
+		<th style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font" >Balance</th>
+	</tr>
+<% odd=true%>
+<% balance = 0%>
+<% @transactions.each do |transaction| %>
+<% balance+=transaction.amount.to_f%>
+<% if (odd) %>
+	<tr bgcolor="#90D8E8" onMouseover="this.bgColor='#FFB200'" onMouseout="this.bgColor='#90D8E8'" onclick="window.location='/transactions/<%=transaction.id%>/edit'">
+<% else %>
+	<tr bgcolor="#FFFFFF" onMouseover="this.bgColor='#FFB200'" onMouseout="this.bgColor='#FFFFFF'" onClick="window.location='/transactions/<%=transaction.id%>/edit'">
+<% end %>
+		<td style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font"><%=h transaction.itemno %></td>
+		<td style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font"><%=h transaction.transaction_date %></td>
+	    <td style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font"><%=h transaction.description %></td>
+	    <td style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font"><input type="checkbox" name="fee" value="<%=h transaction.fee %>"/></td>
+	    <td style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font"><input type="checkbox" name="fee" value="<%=h transaction.cleared %>"/></td>
+	    <td style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font"><%=h number_to_currency(transaction.amount, :unit => "$")%></td>
+	    <td style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font"><%=h number_to_currency(balance, :unit => "$")%></td>
+    </tr>
+    <% odd = !odd %>
+<% end %>
+	<tr bgcolor="#BBFF93" onclick="window.location='/transactions/new/<%=@account.id%>'">
+		<td style="border-style:solid; border-width: 1px; border-color: #C0C0C0"><br /></td>
+		<td style="border-style:solid; border-width: 1px; border-color: #C0C0C0"></td>
+	    <td style="border-style:solid; border-width: 1px; border-color: #C0C0C0"></td>
+	    <td style="border-style:solid; border-width: 1px; border-color: #C0C0C0"></td>
+	    <td style="border-style:solid; border-width: 1px; border-color: #C0C0C0"></td>
+	    <td style="border-style:solid; border-width: 1px; border-color: #C0C0C0"></td>
+	    <td style="border-style:solid; border-width: 1px; border-color: #C0C0C0"></td>
+    </tr>
+    <tr bgcolor="#3B5998">
+		<td colspan=2 align="left"><h3 style="color:#FFFFFF; font-family: cool_font">&lt;&lt;</h3></td>
+		<td colspan=1 align="center">
+			<h3 style="color:#FFFFFF; font-family: cool_font">
+			&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;March&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;
+			</h3>
+		</td>
+		<td colspan=4 align="right"><h3 style="color:#FFFFFF; font-family: cool_font">&gt;&gt;</h3></td>
+    </tr>
+    </table>
+   </fieldset>
+ </div>
+<%= link_to 'Edit Account', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %>
