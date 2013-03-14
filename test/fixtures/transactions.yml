@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  account_id: 1
+  description: MyString
+  itemno: MyString
+  transaction_date: 2013-03-14
+  fee: false
+  cleared: false
+  amount: 9.99
+  category_id: 1
+  deleted: false
+
+two:
+  account_id: 1
+  description: MyString
+  itemno: MyString
+  transaction_date: 2013-03-14
+  fee: false
+  cleared: false
+  amount: 9.99
+  category_id: 1
+  deleted: false

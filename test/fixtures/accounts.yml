@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  account_name: MyString
+  description: MyString
+  starting_balance: 9.99
+  account_type: 1
+
+two:
+  account_name: MyString
+  description: MyString
+  starting_balance: 9.99
+  account_type: 1
