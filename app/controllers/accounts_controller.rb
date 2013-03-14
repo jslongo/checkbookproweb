@@ -31,6 +31,17 @@ class AccountsController < ApplicationController
       format.json { render json: @account }
     end
   end
+  
+  def since
+    @account = Account.find(params[:id])
+    @transactions = Transaction.find(:all, :conditions => ["account_id = ? AND updated_at >= ?", params[:id], params[:date]])
+
+    respond_to do |format|
+      format.html # since.html.erb
+      format.xml  { render :xml => @transactions }
+      format.json  { render :json => @transactions }
+    end
+  end
 
   # GET /accounts/1/edit
   def edit
