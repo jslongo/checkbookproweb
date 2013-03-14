@@ -34,7 +34,7 @@ class AccountsController < ApplicationController
   
   def since
     @account = Account.find(params[:id])
-    @transactions = Transaction.find(:all, :conditions => ["account_id = ? AND updated_at >= ?", params[:id], params[:date]])
+    @transactions = Transaction.find(:all, :conditions => ["account_id = ? AND transaction_date >= ?", params[:id], params[:date]])
 
     respond_to do |format|
       format.html # since.html.erb

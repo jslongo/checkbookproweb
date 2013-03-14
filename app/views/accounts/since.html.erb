@@ -23,9 +23,9 @@
 <% @transactions.each do |transaction| %>
 <% balance+=transaction.amount.to_f%>
 <% if (odd) %>
-	<tr bgcolor="#90D8E8" onclick="window.location='/transactions/<%=transaction.id%>/edit'">
+	<tr bgcolor="#90D8E8" onMouseover="this.bgColor='#FFB200'" onMouseout="this.bgColor='#90D8E8'" onclick="window.location='/transactions/<%=transaction.id%>/edit'">
 <% else %>
-	<tr onClick="window.location='/transactions/<%=transaction.id%>/edit'">
+	<tr bgcolor="#FFFFFF" onMouseover="this.bgColor='#FFB200'" onMouseout="this.bgColor='#FFFFFF'" onClick="window.location='/transactions/<%=transaction.id%>/edit'">
 <% end %>
 		<td style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font"><%=h transaction.itemno %></td>
 		<td style="border-style:solid; border-width: 1px; border-color: #C0C0C0; font-family: cool_font"><%=h transaction.transaction_date %></td>
@@ -37,7 +37,7 @@
     </tr>
     <% odd = !odd %>
 <% end %>
-	<tr bgcolor="#90F59C" onclick="window.location='/transactions/new/<%=@account.id%>'">
+	<tr bgcolor="#BBFF93" onclick="window.location='/transactions/new/<%=@account.id%>'">
 		<td style="border-style:solid; border-width: 1px; border-color: #C0C0C0"><br /></td>
 		<td style="border-style:solid; border-width: 1px; border-color: #C0C0C0"></td>
 	    <td style="border-style:solid; border-width: 1px; border-color: #C0C0C0"></td>
