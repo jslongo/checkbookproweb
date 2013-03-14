@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Accounts: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <style type="text/css">
+
+html { height: 100%; font-size: 62.5% }
+
+/* ==================== Form style sheet ==================== */
+
+form { margin: 25px 0 0 29px; width: 450px; padding-bottom: 30px; }
+
+fieldset {
+	margin: 0 0 22px 0; border: 1px solid #3B5998; padding: 12px 17px; background-color: #D8DFEA;
+	font-family: cool_font;
+	-moz-box-shadow: 3px 3px 4px #000;
+	-webkit-box-shadow: 3px 3px 4px #000;
+	box-shadow: 3px 3px 4px #000;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+legend.account { font-size: 2em; background-color: #3B5998; color: #FFFFFF; font-weight: bold; padding: 4px 8px; }
+legend { font-size: 1.1em; background-color: #3B5998; color: #FFFFFF; font-weight: bold; padding: 4px 8px; }
+
+label.float { float: left; display: block; width: 100px; margin: 4px 0 0 0; clear: left; font-family: cool_font;}
+label { display: block; width: auto; margin: 0 0 10px 0; }
+label.spam-protection { display: inline; width: auto; margin: 0; }
+
+input.inp-text, textarea, input.choose, input.answer { border: 1px solid #909090; padding: 3px; }
+input.inp-text { width: 300px; margin: 0 0 8px 0; }
+textarea { width: 400px; height: 150px; margin: 0 0 12px 0; display: block; }
+
+input.choose { margin: 10px 10px 10px 0; }
+input.answer { width: 40px; margin: 0 0 0 10px; }
+input.submit-button { font: 1.4em Georgia, "Times New Roman", Times, serif; letter-spacing: 1px; display: block; margin: 23px 0 0 0; }
+
+form br { display: none; }
+
+/* ==================== Form style sheet END ==================== */
+
+</style>
+</head>
+<body>
+	<table width="100%" border=0>
+		<tr bgcolor="#3B5998">
+			<td colspan=2 align="left"><h1 style="font-size: 3.5em; color: #fff; font-family: cool_font;">Checkbook Pro</h1></td>
+		</tr>
+		<tr valign="top">
+			<td width=20%>
+				<div bgcolor="#fff" style="background-color: #fff; border-width: 10px; border-style: solid; border-color: #fff; border-radius: 15px;">
+					   <fieldset>
+						<legend>Login:</legend>
+					    <label for="username" class="float"><strong>User:</strong></label><br />
+    					<input type="text" name="username" id="username" class="inp-text"/>
+    					<label for="password" class="float"><strong>Password:</strong></label><br />
+    					<input type="text" name="password" id="password" class="inp-text"/>
+    					<input type="submit" value="Login" class="submit-button"/>
+    				</fieldset>
+				</div>
+			</td>
+			<td>
+				<div style="color: green"><%= flash[:notice] %></div>
+				<%= yield  %>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
